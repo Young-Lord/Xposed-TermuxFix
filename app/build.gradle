@@ -1,0 +1,51 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 31
+    defaultConfig {
+        applicationId "moe.lyniko.termux_fix"
+        minSdkVersion 23
+        //noinspection ExpiredTargetSdkVersion
+        targetSdkVersion 31
+        versionCode 1
+        versionName "0.1"
+    }
+
+    signingConfigs {
+        release {
+        }
+    }
+    packagingOptions {
+        jniLibs {
+            excludes += ['META-INF/**']
+        }
+        resources {
+            excludes += ['META-INF/**']
+        }
+    }
+
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            jniDebuggable true
+        }
+        debug {
+            jniDebuggable true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lint {
+        abortOnError false
+    }
+    namespace 'moe.lyniko.termux_fix'
+}
+
+dependencies {
+    implementation 'androidx.annotation:annotation:1.4.0'
+    implementation 'androidx.appcompat:appcompat:1.4.2'
+    compileOnly 'de.robv.android.xposed:api:82'
+}

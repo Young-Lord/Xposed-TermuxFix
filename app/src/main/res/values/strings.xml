@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Termux优化</string>
+    <string name="module_description">屏蔽异常按键事件</string>
+</resources>
