@@ -16,7 +16,7 @@ public class TermuxHook implements IXposedHookLoadPackage {
 
         if ("com.termux".equals(lpparam.packageName)) {
             try {
-                XposedHelpers.findAndHookMethod("com.termux.view.TerminalView", lpparam.classLoader, "onKeyDown", new XC_MethodReplacement() {
+                XposedHelpers.findAndHookMethod("com.termux.view.TerminalView", lpparam.classLoader, "onKeyDown", new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         int pa1 = (int)(param.args[0]);
