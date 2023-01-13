@@ -2,6 +2,7 @@ package moe.lyniko.termux_fix;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodReplacement;
+import de.robv.android.xposed.XC_MethodHook;
 import de.robv.android.xposed.XSharedPreferences;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
@@ -16,7 +17,7 @@ public class TermuxHook implements IXposedHookLoadPackage {
 
         if ("com.termux".equals(lpparam.packageName)) {
             try {
-                XposedHelpers.findAndHookMethod("com.termux.view.TerminalView", lpparam.classLoader, "onKeyDown", new XC_MethodHook() {
+                XposedHelpers.findAndHookMethod("com.termux.view.TerminalView", lpparam.classLoader, "onKeyDown", int.class, KeyEvent.class, new XC_MethodHook() {
                     @Override
                     protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
                         int pa1 = (int)(param.args[0]);
